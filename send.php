@@ -1,5 +1,5 @@
 <?php
-//Даные телеграмм
+// Telegram data
 $token ='994138058:AAFcqV-6avvCh8z1zMkYDafz3rQhcN8zKGs';
 $chatid = '-354273811';
 $success = 'Message sent';
@@ -7,7 +7,7 @@ $text_error = 'Form not completed';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-//данные из форм
+// data from forms
 $plaсeformes = trim($_POST['Placement']);
 $plaсeformestwo = trim($_POST['Form-options']);
 $hawcall = trim($_POST['hawcall']);
@@ -16,7 +16,7 @@ $name = trim($_POST['Name']);
 $phone = trim($_POST['Phone']);
 $timecall = trim($_POST['time-call']);
 
-// сообщение
+// message
 $tmtext = array(
 "Call method" => $plaсeformes,
 "Placement of the form" => $plaсeformestwo,
@@ -26,12 +26,12 @@ $tmtext = array(
 "Name" => $name,
 "Phone" => $phone,
 );
-//собираем все в кучу
+//putting everything together
 $txt='';
 foreach($tmtext as $key => $value) {
      $txt .= "<b>".$key."</b>: ".$value."%0A";
   }
-#Отправляем сообщение
+# Sending a message
 fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chatid}&parse_mode=html&text={$txt}","r");
 echo $success;
 }
